@@ -1,125 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic Gallery</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
+<style>
+    body {
+        margin: 0;
+        background: #0a0a0a;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        overflow-x: hidden;
+    }
 
-        /* NAVBAR */
-        nav {
-            background: #222;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* NAVBAR */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(10px);
+    }
 
-        nav .logo {
-            color: #fff;
-            font-size: 22px;
-            font-weight: bold;
-        }
+    nav .logo {
+        font-size: 26px;
+        font-weight: bold;
+        color: #00eaff;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px #00eaff;
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
-        }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 17px;
+        transition: 0.3s;
+        padding-bottom: 5px;
+    }
 
-        nav ul li a:hover {
-            color: #00bcd4;
-        }
+    nav ul li a:hover {
+        color: #00eaff;
+        text-shadow: 0 0 10px #00eaff;
+        border-bottom: 2px solid #00eaff;
+    }
 
-        /* GALLERY SECTION */
-        .gallery-container {
-            padding: 40px;
-            text-align: center;
-        }
+    /* HERO SECTION */
+    .hero {
+        height: 100vh;
+        background-image: url('YOUR_IMAGE_HERE.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-        .gallery-container h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+    .hero h1 {
+        font-size: 60px;
+        text-shadow: 0 0 20px #000;
+        animation: fadeIn 2s ease;
+    }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
+    /* SECTION TITLE */
+    .section-title {
+        text-align: center;
+        margin-top: 80px;
+        font-size: 40px;
+        text-shadow: 0 0 10px #00eaff;
+        animation: fadeIn 1.5s ease;
+    }
 
-        .gallery-grid img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+    /* GALLERY */
+    .gallery {
+        padding: 50px;
+        columns: 3;
+        column-gap: 20px;
+    }
 
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
+    .gallery img {
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-        /* FOOTER */
-        footer {
-            background: #222;
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-        }
-    </style>
+    .gallery img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 20px rgba(0,255,255,0.4);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+
+    .lightbox img {
+        width: 80%;
+        max-width: 900px;
+        border-radius: 10px;
+        box-shadow: 0 0 25px #00eaff;
+    }
+
+    /* FOOTER */
+    footer {
+        background: #000;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        color: #aaa;
+        border-top: 1px solid #111;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .gallery { columns: 2; }
+        .hero h1 { font-size: 45px; }
+    }
+
+    @media (max-width: 600px) {
+        .gallery { columns: 1; }
+        .hero h1 { font-size: 35px; }
+    }
+</style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">Your Name</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Your Name</div>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- GALLERY -->
-    <div class="gallery-container">
-        <h1>Gallery</h1>
+<!-- HERO -->
+<div class="hero">
+    <h1>Cinematic Gallery</h1>
+</div>
 
-        <div class="gallery-grid">
-            <img src="https://picsum.photos/400/300?random=1" alt="">
-            <img src="https://picsum.photos/400/300?random=2" alt="">
-            <img src="https://picsum.photos/400/300?random=3" alt="">
-            <img src="https://picsum.photos/400/300?random=4" alt="">
-            <img src="https://picsum.photos/400/300?random=5" alt="">
-            <img src="https://picsum.photos/400/300?random=6" alt="">
-            <img src="https://picsum.photos/400/300?random=7" alt="">
-            <img src="https://picsum.photos/400/300?random=8" alt="">
-        </div>
-    </div>
+<!-- TITLE -->
+<div class="section-title">Featured Works</div>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2024 Your Name — Full Stack Developer
-    </footer>
+<!-- GALLERY -->
+<div class="gallery">
+    <img src="https://picsum.photos/500/700?random=1">
+    <img src="https://picsum.photos/500/650?random=2">
+    <img src="https://picsum.photos/500/600?random=3">
+    <img src="https://picsum.photos/500/700?random=4">
+    <img src="https://picsum.photos/500/650?random=5">
+    <img src="https://picsum.photos/500/600?random=6">
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+</div>
+
+<script>
+    /* LIGHTBOX */
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = img.src;
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+    }
+
+    /* SCROLL FADE-IN */
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+        observer.observe(img);
+    });
+</script>
+
+<!-- FOOTER -->
+<footer>
+    © 2024 Your Name — Cinematic Portfolio
+</footer>
 
 </body>
 </html>
-
