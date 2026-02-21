@@ -3,228 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cinematic Gallery</title>
+<title>The 1st Studio Album – Out Now</title>
 
 <style>
     body {
         margin: 0;
-        background: #0a0a0a;
+        background: #050505;
+        color: #fff;
         font-family: Arial, sans-serif;
-        color: #fff;
-        overflow-x: hidden;
+        text-align: center;
     }
 
-    /* NAVBAR */
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 20px 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000;
-        background: rgba(0,0,0,0.4);
-        backdrop-filter: blur(10px);
-    }
-
-    nav .logo {
-        font-size: 26px;
-        font-weight: bold;
-        color: #00eaff;
-        letter-spacing: 1px;
-        text-shadow: 0 0 10px #00eaff;
-    }
-
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 30px;
-    }
-
-    nav ul li a {
-        color: #fff;
+    a {
+        color: inherit;
         text-decoration: none;
-        font-size: 17px;
-        transition: 0.3s;
-        padding-bottom: 5px;
     }
 
-    nav ul li a:hover {
-        color: #00eaff;
-        text-shadow: 0 0 10px #00eaff;
-        border-bottom: 2px solid #00eaff;
+    /* WRAPPER */
+    .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    /* HERO SECTION */
-    .hero {
-        height: 100vh;
-        background-image: url('YOUR_IMAGE_HERE.jpg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+    /* TOP NAV LINKS */
+    .top-links {
+        padding: 20px 20px 0;
         display: flex;
         justify-content: center;
-        align-items: center;
-        text-align: center;
+        gap: 25px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 
-    .hero h1 {
-        font-size: 60px;
-        text-shadow: 0 0 20px #000;
-        animation: fadeIn 2s ease;
+    .top-links a {
+        opacity: 0.8;
+        transition: 0.2s;
     }
 
-    /* SECTION TITLE */
-    .section-title {
-        text-align: center;
-        margin-top: 80px;
+    .top-links a:hover {
+        opacity: 1;
+    }
+
+    /* TITLE AREA */
+    .title-block {
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+
+    .artist-logo {
         font-size: 40px;
-        text-shadow: 0 0 10px #00eaff;
-        animation: fadeIn 1.5s ease;
+        font-weight: bold;
+        letter-spacing: 8px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
     }
 
-    /* GALLERY */
-    .gallery {
-        padding: 50px;
-        columns: 3;
-        column-gap: 20px;
+    .album-logo {
+        font-size: 20px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        opacity: 0.8;
     }
 
-    .gallery img {
-        width: 100%;
+    /* MAIN SECTION */
+    .main-section {
+        margin-top: 40px;
+        padding: 0 20px 40px;
+    }
+
+    .main-section h1 {
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
         margin-bottom: 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: 0.3s;
-        opacity: 0;
-        transform: translateY(20px);
     }
 
-    .gallery img:hover {
-        transform: scale(1.03);
-        box-shadow: 0 0 20px rgba(0,255,255,0.4);
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.9);
-        display: none;
+    .buttons-row {
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
-        z-index: 2000;
+        gap: 15px;
+        margin-bottom: 30px;
     }
 
-    .lightbox img {
-        width: 80%;
-        max-width: 900px;
-        border-radius: 10px;
-        box-shadow: 0 0 25px #00eaff;
+    .btn {
+        border: 1px solid #fff;
+        padding: 10px 22px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: transparent;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #fff;
+        color: #000;
+    }
+
+    /* ALBUM IMAGE AREA */
+    .album-art {
+        margin: 30px auto 10px;
+        max-width: 320px;
+        height: 320px;
+        background: linear-gradient(135deg, #ff7aa2, #7a7aff);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .album-caption {
+        font-size: 13px;
+        opacity: 0.7;
+        margin-top: 8px;
+    }
+
+    /* SOCIAL ICONS ROW (TEXT LINKS HERE) */
+    .social-row {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .social-row a {
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+
+    .social-row a:hover {
+        opacity: 1;
     }
 
     /* FOOTER */
     footer {
-        background: #000;
-        text-align: center;
+        font-size: 11px;
+        color: #888;
         padding: 20px;
+        border-top: 1px solid #222;
         margin-top: 40px;
-        color: #aaa;
-        border-top: 1px solid #111;
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    footer a {
+        color: #888;
+        text-decoration: none;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-        .gallery { columns: 2; }
-        .hero h1 { font-size: 45px; }
+    footer a:hover {
+        text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-        .gallery { columns: 1; }
-        .hero h1 { font-size: 35px; }
+    footer .legal-links {
+        margin-top: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+        .main-section h1 {
+            font-size: 32px;
+        }
+        .artist-logo {
+            font-size: 48px;
+        }
     }
 </style>
 </head>
 
 <body>
+<div class="page">
 
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">Your Name</div>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</nav>
+    <!-- TOP LINKS (VIDEOS / SHOP / SHOWS / PORTAL) -->
+    <div class="top-links">
+        <a href="#videos">Videos</a>
+        <a href="#shop">Shop</a>
+        <a href="#shows">Shows</a>
+        <a href="#portal">Portal</a>
+    </div>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>Cinematic Gallery</h1>
+    <!-- TITLE AREA -->
+    <div class="title-block">
+        <!-- Replace with your logo image if you want -->
+        <div class="artist-logo">YOUR NAME</div>
+        <div class="album-logo">Ruby Era</div>
+    </div>
+
+    <!-- MAIN SECTION -->
+    <div class="main-section">
+        <h1>The 1st Studio Album – Out Now</h1>
+
+        <div class="buttons-row">
+            <a href="#" class="btn">Listen + Download</a>
+            <a href="#" class="btn" id="shop">Shop Now</a>
+            <a href="#" class="btn">Watch Music Video 1</a>
+            <a href="#" class="btn">Watch Music Video 2</a>
+        </div>
+
+        <!-- ALBUM ART / CENTER IMAGE -->
+        <div class="album-art">
+            Album Cover
+        </div>
+        <div class="album-caption">
+            Physical & digital editions available now.
+        </div>
+
+        <!-- SOCIAL LINKS -->
+        <div class="social-row">
+            <a href="#">Spotify</a>
+            <a href="#">Apple Music</a>
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">YouTube</a>
+            <a href="#">X</a>
+            <a href="#" id="portal">Fan Portal</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Your Label Name  
+        <div class="legal-links">
+            <a href="#">Terms and Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Do Not Sell My Info</a>
+            <a href="#">Your Region Privacy Rights</a>
+            <a href="#">Send Feedback</a>
+        </div>
+    </footer>
+
 </div>
-
-<!-- TITLE -->
-<div class="section-title">Featured Works</div>
-
-<!-- GALLERY -->
-<div class="gallery">
-    <img src="https://picsum.photos/500/700?random=1">
-    <img src="https://picsum.photos/500/650?random=2">
-    <img src="https://picsum.photos/500/600?random=3">
-    <img src="https://picsum.photos/500/700?random=4">
-    <img src="https://picsum.photos/500/650?random=5">
-    <img src="https://picsum.photos/500/600?random=6">
-</div>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img">
-</div>
-
-<script>
-    /* LIGHTBOX */
-    const galleryImages = document.querySelectorAll('.gallery img');
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-        });
-    });
-
-    function closeLightbox() {
-        lightbox.style.display = 'none';
-    }
-
-    /* SCROLL FADE-IN */
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = "translateY(0)";
-            }
-        });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.gallery img').forEach(img => {
-        observer.observe(img);
-    });
-</script>
-
-<!-- FOOTER -->
-<footer>
-    © 2024 Your Name — Cinematic Portfolio
+</body>
+</html>
 </footer>
 
 </body>
